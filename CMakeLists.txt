@@ -3,4 +3,7 @@ project(shimaneitdesignsim)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(game main.cpp)
+add_executable(game main.cpp
+                    ata.cpp
+                    ata.h
+)
