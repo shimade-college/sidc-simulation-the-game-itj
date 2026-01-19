@@ -20,14 +20,14 @@ typedef struct {
 Student start() {
     Student s;
 
-    printf("ã‚ˆã†ã“ã\n");
+    printf("‚æ‚¤‚±‚»\n");
     sleep(1);
 
-    printf("å…¥å­¦ã™ã‚‹å­¦ç§‘ã‚’é¸æŠã—ã¦ãã ã•ã„\n");
-    printf("1: ITç§‘  2: VDç§‘\n");
+    printf("“üŠw‚·‚éŠw‰È‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢\n");
+    printf("1: IT‰È  2: VD‰È\n");
     scanf("%d", &s.gakka);
 
-    printf("åå‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„\n");
+    printf("–¼‘O‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
     scanf("%s", s.name);
 
     return s;
@@ -38,7 +38,6 @@ void menuIT(Student s) {
     Status st = {0, 0, 0, 0};
 
     int month = 1;
-    int weekmonth = 1;
     int maxmonth = 12;
     int choice;
 
@@ -46,11 +45,13 @@ void menuIT(Student s) {
     int up_it;
     int up_linux;
 
-    printf("\n%s ã•ã‚“ã® ITç§‘ç”Ÿæ´»ãŒå§‹ã¾ã£ãŸï¼\n", s.name);
+    printf("\n%s ‚³‚ñ‚Ì IT‰È¶Šˆ‚ªn‚Ü‚Á‚½I\n", s.name);
 
     while (month <= maxmonth) {
-
-        printf("\n====== %dã‹æœˆç›® ======\n", month);
+        int month_total=0;
+        int weekmonth = 1;
+        sleep(1);
+        printf("\n====== %d‚©Œ–Ú ======\n", month);
 
         while (weekmonth <= 4) {
 
@@ -72,61 +73,77 @@ void menuIT(Student s) {
 
 
 
-            printf("\n%dã‹æœˆç›® %dé€±ç›®\n", month, weekmonth);
+            printf("\n%d‚©Œ–Ú %dT–Ú\n", month, weekmonth);
 
-            printf("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‘ãƒãƒ«\n");
-            printf("1: Cè¨€èª   +%d\n", up_c);
-            printf("2: ITãƒ‘ã‚¹  +%d\n", up_it);
+            printf("ƒXƒe[ƒ^ƒXƒpƒlƒ‹\n");
+            printf("1: CŒ¾Œê   +%d\n", up_c);
+            printf("2: ITƒpƒX  +%d\n", up_it);
             printf("3: LINUX   +%d\n", up_linux);
-            printf("4: ä¼‘ã‚€(ã‚¹ãƒˆãƒ¬ã‚¹å€¤ï¼‰ -%d\n",down_stress);
+            printf("4: ‹x‚Ş(ƒXƒgƒŒƒX’lj -%d\n",down_stress);
 
-            printf("é¸æŠ: ");
+            printf("‘I‘ğ: ");
             scanf("%d", &choice);
 
             switch (choice) {
                 case 1:
                     st.cgengo += up_c;
-                    printf("Cè¨€èªãŒ +%d ä¸ŠãŒã£ãŸï¼\n", up_c);
+                    printf("CŒ¾Œê‚ª +%d ã‚ª‚Á‚½I\n", up_c);
+                    month_total += up_c;
                     st.stress++;
                     break;
                 case 2:
                     st.ipass += up_it;
-                    printf("ITãƒ‘ã‚¹ãŒ +%d ä¸ŠãŒã£ãŸï¼\n", up_it);
+                    printf("ITƒpƒX‚ª +%d ã‚ª‚Á‚½I\n", up_it);
+                    month_total += up_it;
                     st.stress++;
                     break;
                 case 3:
                     st.linux += up_linux;
-                    printf("LINUXãŒ +%d ä¸ŠãŒã£ãŸï¼\n", up_linux);
+                    printf("LINUX‚ª +%d ã‚ª‚Á‚½I\n", up_linux);
+                    month_total += up_linux;
                     st.stress++;
                     break;
                 case 4:
                     st.stress -= down_stress;
-                    printf("ä»Šé€±ã¯ä¼‘ã‚“ã  ã‚¹ãƒˆãƒ¬ã‚¹å€¤ãŒ%dä¸‹ãŒã£ãŸ!\n",down_stress);
+                    printf("¡T‚Í‹x‚ñ‚¾ ƒXƒgƒŒƒX’l‚ª%d‰º‚ª‚Á‚½!\n",down_stress);
                     break;
                 default:
-                    printf("ç„¡åŠ¹ãªé¸æŠã§ã™\n");
+                    printf("–³Œø‚È‘I‘ğ‚Å‚·\n");
                     break;
+            }
+            sleep(1);
+            if (weekmonth == 4) {
+                printf("\n--- Œ––‰Û‘è”­¶I ---\n");
+                printf("¡Œ‚Ì‡Œv’l20ˆÈã‚È‚çƒNƒŠƒA@¡Œ‚Ì¬’·‡Œv: %d\n", month_total);
+
+                if (month_total >= 20) {
+                    printf("‰Û‘èƒNƒŠƒAI ƒXƒgƒŒƒX -2\n");
+                    st.stress -= 2;
+                } else {
+                    printf("‰Û‘è¸”sc ƒXƒgƒŒƒX -3\n");
+                    st.stress += 3;
+                }
             }
 
             weekmonth++;
+
         }
 
-
-        printf("\n--- %dã‹æœˆç›® çµ‚äº†æ™‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ ---\n", month);
-        printf("Cè¨€èª  : %d\n", st.cgengo);
-        printf("ITãƒ‘ã‚¹ : %d\n", st.ipass);
+        sleep(1);
+        printf("\n--- %d‚©Œ–Ú I—¹ƒXƒe[ƒ^ƒX ---\n", month);
+        printf("CŒ¾Œê  : %d\n", st.cgengo);
+        printf("ITƒpƒX : %d\n", st.ipass);
         printf("LINUX  : %d\n", st.linux);
-        printf("ã‚¹ãƒˆãƒ¬ã‚¹ã€€ï¼š%d\n", st.stress);
+        printf("ƒXƒgƒŒƒX@F%d\n", st.stress);
 
         month++;
-        weekmonth = 1;
     }
 
-    printf("\n=== %dã‹æœˆé–“ã®è‚²æˆçµ‚äº†ï¼ ===\n", maxmonth);
+    printf("\n=== %d‚©ŒŠÔ‚Ìˆç¬I—¹I ===\n", maxmonth);
 }
 
 void menuVD(Student s) {
-    printf("%s ã•ã‚“ã€ã‚ˆã†ã“ãVDç§‘ã¸ï¼\n", s.name);
+    printf("%s ‚³‚ñA‚æ‚¤‚±‚»VD‰È‚ÖI\n", s.name);
 }
 
 int main() {
