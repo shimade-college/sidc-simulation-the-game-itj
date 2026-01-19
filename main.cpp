@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 
-
+//test
+//test
+//test
 typedef struct {
     int gakka;
     char name[20];
