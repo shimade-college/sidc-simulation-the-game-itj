@@ -3,9 +3,7 @@
 #include <stdlib.h>
 
 
-//test
-//test
-//test
+
 typedef struct {
     int gakka;
     char name[20];
@@ -37,10 +35,11 @@ Student start() {
 void menuIT(Student s) {
     Status st = {0, 0, 0, 0};
 
+    int gakunen = 1;
     int month = 1;
     int maxmonth = 12;
     int choice;
-
+    char kaishamenu;
     int up_c;
     int up_it;
     int up_linux;
@@ -132,13 +131,29 @@ void menuIT(Student s) {
                     }
                 }
             }
-
-
-
             weekmonth++;
 
         }
-        if (month == 11) {/*進級制作*/
+
+        if (weekmonth==4) {
+            char kaishamenu;
+            printf("もしあなたが就職先の会社に必要なステータスを見たい場合Yを見たくない場合はyesを押してください");
+            scanf("%d", &kaishamenu);
+            if (kaishamenu == 'y') {
+                printf("CyberLife c言語60以上\n");
+                printf("株式会社dit Linux60以上\n");
+            } else {
+                printf("次の月へ移行します");
+            }
+
+
+        }
+        if (gakunen == 2 && month == 3) {
+
+        }
+
+
+        if (gakunen == 1 && month == 11) {/*進級制作*/
 
             int select;
             int select_seisaku = 0;
@@ -193,6 +208,19 @@ void menuIT(Student s) {
         printf("ITパス : %d\n", st.ipass);
         printf("LINUX  : %d\n", st.linux);
         printf("ストレス　：%d\n", st.stress);
+
+        if (month == 12) {
+            gakunen = 2;
+            sleep(1);
+            printf("\n========================\n");
+            printf("1年間が終了しました\n");
+            sleep(1);
+            printf("2年生に進級しました！\n");
+            printf("========================\n");
+
+            month = 0;
+        }
+
 
         month++;
     }
