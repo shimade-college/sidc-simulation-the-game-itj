@@ -112,7 +112,7 @@ void menuIT(Student s) {
                     break;
             }
             sleep(1);
-            if (weekmonth == 4) {
+            if (weekmonth == 4) {/*授業課題イベント*/
                 printf("\n--- 月末課題発生！ ---\n");
                 printf("今月の合計値20以上ならクリア　今月の成長合計: %d\n", month_total);
 
@@ -120,14 +120,72 @@ void menuIT(Student s) {
                     printf("課題クリア！ ストレス -2\n");
                     st.stress -= 2;
                 } else {
-                    printf("課題失敗… ストレス -3\n");
+                    printf("合計値が20以上でないためダイスロールを実行します");
+                    int dice = rand() % 2;
+                    if (dice == 0) {
+                        printf("課題クリア！ ストレス -2\n");
+                        st.stress -= 2;
+                    }
+                    else{
+                    printf("課題失敗… ストレス +3\n");
                     st.stress += 3;
+                    }
                 }
             }
+
+
 
             weekmonth++;
 
         }
+        if (month == 11) {/*進級制作*/
+
+            int select;
+            int select_seisaku = 0;
+
+            printf("\n=== 進級制作イベント ===\n");
+            printf("制作分野を選択してください\n");
+            printf("1: C言語\n");
+            printf("2: ITパス\n");
+            printf("3: LINUX\n");
+            printf("選択: ");
+            scanf("%d", &select);
+
+            if (select == 1) {
+                select_seisaku = st.cgengo;
+                printf("C言語を選択しました\n");
+            } else if (select == 2) {
+                select_seisaku = st.ipass;
+                printf("ITパスを選択しました\n");
+            } else if (select == 3) {
+                select_seisaku = st.linux;
+                printf("LINUXを選択しました\n");
+            } else {
+                printf("無効な選択です\n");
+                select_seisaku = 0;
+            }
+
+            printf("選択分野の現在値: %d\n", select_seisaku);
+
+            if (select_seisaku >= 60) {
+                printf("進級制作 合格\n");
+                printf("ストレスが 5 下がった\n");
+                st.stress -= 5;
+            } else {
+                printf("合計値が60以上でないためダイスロールを実行します");
+                int dice = rand() % 3;
+                if (dice == 0) {
+                    printf("進級制作 合格\n");
+                    printf("ストレスが　5　下がった\n");
+                    st.stress -= 2;
+                } else {
+                printf("進級制作 不合格\n");
+                printf("ストレスが 5 上がった\n");
+                st.stress += 5;
+                }
+            }
+        }
+
 
         sleep(1);
         printf("\n--- %dか月目 終了時ステータス ---\n", month);
